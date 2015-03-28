@@ -18,10 +18,7 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *loingButton;
 @property (weak, nonatomic) IBOutlet UIButton *takePhotoButton;
-@property (weak, nonatomic) IBOutlet UIButton *shareButtonButton;
-@property (weak, nonatomic) IBOutlet UIButton *notesButton;
 @property (weak, nonatomic) IBOutlet UIButton *photoLibraryButton;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *displaySegment;
 @property (nonatomic) UIImagePickerController *imagePicker;
 @property (nonatomic)UIImage *image;
 
@@ -31,6 +28,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.takePhotoButton.layer.cornerRadius = 40;
+    self.photoLibraryButton.layer.cornerRadius = self.takePhotoButton.layer.cornerRadius;
+
     self.account = [[DBAccountManager sharedManager] linkedAccount];
     if (self.account) {
         DBFilesystem *filesystem = [[DBFilesystem alloc] initWithAccount:self.account];
@@ -38,10 +39,6 @@
     }
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 
 #pragma mark - Helper Methods
